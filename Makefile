@@ -1,5 +1,5 @@
 #Objet
-OBJ= fonction.o Sequentiel.o
+OBJ= GradientConjugue.o fonction.o Sequentiel.o
 optn= -g -fbounds-check -o0 -Wall
 
 #Compile et crée l'executable
