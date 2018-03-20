@@ -27,7 +27,7 @@ contains
 
   subroutine Mat_mul_creux(A,B1,B2,C1,C2,X,U) !calcul AU=X
     real,dimension(:),intent(in)::A,B1,B2,C1,C2,U
-    integer::n=len(A)
+    integer::n=size(A)
     real,dimension(n),intent(out):: X
 
     do i=4:n-3
