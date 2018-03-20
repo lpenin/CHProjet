@@ -27,10 +27,10 @@ contains
 
   subroutine Mat_mul_creux(A,B1,B2,C1,C2,X,U) !calcul AU=X
     real,dimension(:),intent(in)::A,B1,B2,C1,C2,U
-    integer::n=len(A)
+    integer::n=size(A)
     real,dimension(n),intent(out):: X
 
-    do i=4:n-3
+    do i=4,n-3
       X(i)=A(i)*U(i)+C1(i)*U(i+1)+C2(i)*U(i-1)+B1(i)*U(i+3)+B2(i)*U(i-3)
     end do
     X(1)=A(1)*U(1)+C1(1)*U(2)+B1(1)*U(4)
