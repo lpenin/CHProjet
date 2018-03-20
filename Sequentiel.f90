@@ -24,9 +24,9 @@ CLOSE(unit)
 Allocate(U_0(0:Nx+1,0:Ny+1), U(0:Nx+1,0:Ny+1), Mat_f(0:Nx+1,0:Ny+1))
 Allocate(A(1:Nx*Ny), B1(1:Nx*Ny), B2(1:Nx*Ny), C1(1:Nx*Ny), C2(1:Nx*Ny)) !expliquer d'ou vient la taille des vecteurs
 
-A=1.0d0+ 2.0d0*D*dt/(dy*dy) + 2.0d0*D*dt/(dx*dx)
-B= -1.0d0*D*dt/(dx*dx)
-C= -1.0d0*D*dt/(dy*dy)
+coeff_a=1.0d0+ 2.0d0*D*dt/(dy*dy) + 2.0d0*D*dt/(dx*dx)
+coeff_b= -1.0d0*D*dt/(dx*dx)
+coeff_c= -1.0d0*D*dt/(dy*dy)
 
 
 
