@@ -4,13 +4,9 @@ Program Projet
 
 
 ! PARAMETRE DU SYSTEME
-
-Integer:: Nx, Ny, Maxiter,i,n
-Real*8:: Lx, Ly, dx, dy, dt, tfinal, D
-Real*8,dimension(:),allocatable:: U_0, U, Mat_f
-
-
-
+Integer:: Nx, Ny, i, Maxiter
+Real*8:: Lx, Ly, dx, dy, dt, tfinal, D, t
+Real*8,dimension(:,:),allocatable:: U_0, U, Mat_f
 Real*8,dimension(:),allocatable::A,B1,B2,C1,C2
 Real*8:: coeff_a,coeff_b,coeff_c
 real:: t1,t2
@@ -18,10 +14,7 @@ real:: t1,t2
 call CPU_TIME( t1 )
 
 
-unit=10
 ! INITIALISATION
-
-
 OPEN(10,file='data', form='formatted', status='old')
 READ(10,*)
 READ(10,*) Lx, Ly
@@ -32,7 +25,6 @@ READ(10,*) Nx, Ny
 READ(10,*)
 READ(10,*) tfinal
 CLOSE(10)
-
 
 Allocate(U_0(1:Nx*Ny), U(1:Nx*Ny), Mat_f(1:Nx*Ny))
 Allocate(A(1:Nx*Ny), B1(1:Nx*Ny), B2(1:Nx*Ny), C1(1:Nx*Ny), C2(1:Nx*Ny)) !expliquer d'ou vient la taille des vecteurs
