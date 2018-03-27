@@ -44,5 +44,4 @@ contains
     X(n)=A(n)*U(n)+C2(n)*U(n-1)+B2(n)*U(n-3)
   end subroutine
 
-
 end module
