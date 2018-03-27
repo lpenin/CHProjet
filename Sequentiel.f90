@@ -4,7 +4,7 @@ Program Projet
 
 
 ! PARAMETRE DU SYSTEME
-Integer:: Nx, Ny, i, Maxiter
+Integer:: Nx, Ny, i, Maxiter,j,k,n
 Real*8:: Lx, Ly, dx, dy, dt, tfinal, D, t
 Real*8,dimension(:,:),allocatable:: U_0, U, Mat_f
 Real*8,dimension(:),allocatable::A,B1,B2,C1,C2
