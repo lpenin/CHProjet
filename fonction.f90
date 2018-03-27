@@ -41,4 +41,6 @@ contains
     X(n-1)=A(n-1)*U(n-1)+C1(n-1)*U(n)+C2(n-1)*U(n-2)+B2(n-1)*U(n-4)
     X(n)=A(n)*U(n)+C2(n)*U(n-1)+B2(n)*U(n-3)
   end subroutine
+
+
 end module
