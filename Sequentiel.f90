@@ -5,11 +5,14 @@ Program Projet
 
 
 ! PARAMETRE DU SYSTEME
-Integer:: Nx, Ny, i,Maxiter,j,kt,k
+Integer:: Nx, Ny, i,Maxiter,j,kt,k,n
 Real*8:: Lx, Ly, dx, dy, dt, tfinal, D, t
-Real*8,dimension(:),allocatable:: U_0, U, Mat_f
+Real*8,dimension(:),allocatable:: U_0, U, Mat_f,X
 Real*8,dimension(:),allocatable::A,B1,B2,C1,C2
 Real*8:: coeff_a,coeff_b,coeff_c
+real:: t1,t2
+
+call CPU_TIME( t1 )
 
 
 ! INITIALISATION
@@ -26,11 +29,24 @@ READ(10,*) tfinal
 CLOSE(10)
 
 Allocate(U_0(1:Nx*Ny), U(1:Nx*Ny), Mat_f(1:Nx*Ny))
-Allocate(A(1:Nx*Ny), B1(1:Nx*Ny), B2(1:Nx*Ny), C1(1:Nx*Ny), C2(1:Nx*Ny)) !expliquer d'ou vient la taille des vecteurs
+Allocate(A(1:Nx*Ny), B1(1:Nx*Ny), B2(1:Nx*Ny), C1(1:Nx*Ny), C2(1:Nx*Ny),X(1:Nx*Ny)) !expliquer d'ou vient la taille des vecteurs
 
 coeff_a=1.0d0+ 2.0d0*D*dt/(dy*dy) + 2.0d0*D*dt/(dx*dx)
 coeff_b= -1.0d0*D*dt/(dx*dx)
 coeff_c= -1.0d0*D*dt/(dy*dy)
+
+n=Nx*Ny
+!! matrice
+A=coeff_a
+do i=1,n
+  if (i<n-Nx) then
+    B1(i)=coeff_b
+  end if
+  if (i>Nx)then
+    B2(i)=coeff_b
+  end if
+end do
+
 
 Maxiter= int(tfinal/dt)
 
@@ -58,15 +74,24 @@ U(:)= 0.0d0
 
       k=k+1
 
+
     ENDIF
 
     END DO
   END DO
 
+  X=GC(A,B1,B2,C1,C2,Mat_f,X,n)
 
   END DO
 
-Deallocate(U_0,U,Mat_f)
+print*, X
 
+
+
+
+
+Deallocate(U_0,U,Mat_f,X)
+call CPU_TIME( t2 )
+print *,t2 - t1
 
 end program
