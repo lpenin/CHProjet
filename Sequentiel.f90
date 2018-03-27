@@ -4,11 +4,14 @@ Program Projet
 
 
 ! PARAMETRE DU SYSTEME
-Integer:: Nx, Ny
-Real*8:: Lx, Ly, dx, dy, dt, tfinal, D, t, n
+Integer:: Nx, Ny,i,unit,n
+Real*8:: Lx, Ly, dx, dy, dt, tfinal, D, t
 Real*8,dimension(:,:),allocatable:: U_0, U, Mat_f
 Real*8,dimension(:),allocatable::A,B1,B2,C1,C2
-Real*8,Parameter:: coeff_a,coeff_b,coeff_c
+Real*8:: coeff_a,coeff_b,coeff_c
+real:: t1,t2
+
+call CPU_TIME( t1 )
 
 
 unit=10
@@ -60,15 +63,16 @@ end do
 do while (t<tfinal)
   !BIIIITTTEEEE
   !Inserez le GC
-  x=GC(A,B1,B2,C1,C2,b,n)
 
-  t=t+dt
+
+  t=t+1
 end do
 
 
 
 
 Deallocate(U_0,U,Mat_f)
-
+call CPU_TIME( t2 )
+print *,t2 - t1
 
 end program
