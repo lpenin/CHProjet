@@ -24,9 +24,6 @@ contains
     h=0.0d0
     !h=sin(x)+cos(y)
   end function
-<<<<<<< HEAD
-  
-=======
 
   subroutine Mat_mul_creux(A,B1,B2,C1,C2,X,U) !calcul AU=X
     real*8,dimension(:),intent(in)::A,B1,B2,C1,C2,U
@@ -46,5 +43,4 @@ contains
     X(n-1)=A(n-1)*U(n-1)+C1(n-1)*U(n)+C2(n-1)*U(n-2)+B2(n-1)*U(n-4)
     X(n)=A(n)*U(n)+C2(n)*U(n-1)+B2(n)*U(n-3)
   end subroutine
->>>>>>> d101434e9b991b5ad159b0ead0355993cda7e1ce
 end module
