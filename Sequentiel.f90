@@ -121,7 +121,7 @@ mat_f=0.d0
   k=1
  DO j=1,NY
    do i=1,Nx
-   PRINT*, i*dx, j*dy, u(k)
+   PRINT*, i*dx, j*dy, u(k), ur(k)
    k=k+1
  END DO!
  end do
