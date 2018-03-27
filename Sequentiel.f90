@@ -5,14 +5,15 @@ Program Projet
 
 
 ! PARAMETRE DU SYSTEME
-Integer:: Nx, Ny, i, Maxiter
+Integer:: Nx, Ny, i,Maxiter,j,kt,k
 Real*8:: Lx, Ly, dx, dy, dt, tfinal, D, t
-Real*8,dimension(:,:),allocatable:: U_0, U, Mat_f
+Real*8,dimension(:),allocatable:: U_0, U, Mat_f
 Real*8,dimension(:),allocatable::A,B1,B2,C1,C2
 Real*8:: coeff_a,coeff_b,coeff_c
 
 
 ! INITIALISATION
+
 OPEN(10,file='data', form='formatted', status='old')
 READ(10,*)
 READ(10,*) Lx, Ly
@@ -41,16 +42,16 @@ U(:)= 0.0d0
     k=1
     DO j=1,Ny
       DO i=1,Nx
-        Mat_f(k)=Mat_f(k)+f(i*dx,j*dy,kt))
+        Mat_f(k)=Mat_f(k)+f(i*dx,j*dy,kt)
 
       IF (i==1) THEN
-        Mat_f(k)=Mat_f(k)-coeff_c*h((i-1)*dx,0,kt)
+        Mat_f(k)=Mat_f(k)-coeff_c*h((i-1)*dx,0.d0,kt)
 
       ELSE if (i==Nx)THEN
         Mat_f(k)=Mat_f(k)-coeff_b*g((i-1)*dx,Ny*dy,kt)
 
       ELSE IF (j==0) THEN
-        Mat_f(k)=Mat_f(k)-coeff_c*h(i*dx,0,kt)
+        Mat_f(k)=Mat_f(k)-coeff_c*h(i*dx,0.d0,kt)
 
       ELSE IF (j==0) THEN
         Mat_f(k)=Mat_f(k)-coeff_c*h(i*dx,(Ny-1)*dy,kt)
