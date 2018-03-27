@@ -5,7 +5,7 @@ Program Projet
 
 ! PARAMETRE DU SYSTEME
 Integer:: Nx, Ny
-Real*8:: Lx, Ly, dx, dy, dt, tfinal, D, t
+Real*8:: Lx, Ly, dx, dy, dt, tfinal, D, t, n
 Real*8,dimension(:,:),allocatable:: U_0, U, Mat_f
 Real*8,dimension(:),allocatable::A,B1,B2,C1,C2
 Real*8,Parameter:: coeff_a,coeff_b,coeff_c
@@ -32,23 +32,11 @@ Allocate(A(1:Nx*Ny), B1(1:Nx*Ny), B2(1:Nx*Ny), C1(1:Nx*Ny), C2(1:Nx*Ny)) !expliq
 coeff_a=1.0d0+ 2.0d0*D*dt/(dy*dy) + 2.0d0*D*dt/(dx*dx)
 coeff_b= -1.0d0*D*dt/(dx*dx)
 coeff_c= -1.0d0*D*dt/(dy*dy)
-
-
-do while (t<tfinal)
-  !BIIIITTTEEEE
-  !Inserez le GC
-
-
-  t=t+dt
-end do
-
-
-
-
+n=Nx*Ny
 !! matrice
 A=coeff_a
-do i=1,Nx*Ny
-  if (i<Nx*Ny-Nx) then
+do i=1,n
+  if (i<n-Nx) then
     B1(i)=coeff_b
   end if
   if (i>Nx)then
@@ -65,6 +53,19 @@ do i=1,Nx
 
 end do
  !! fin INITIALISATION matrice
+
+
+
+
+do while (t<tfinal)
+  !BIIIITTTEEEE
+  !Inserez le GC
+  x=GC(A,B1,B2,C1,C2,b,n)
+
+  t=t+dt
+end do
+
+
 
 
 Deallocate(U_0,U,Mat_f)

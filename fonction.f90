@@ -26,9 +26,11 @@ contains
   end function
 
   subroutine Mat_mul_creux(A,B1,B2,C1,C2,X,U) !calcul AU=X
-    real,dimension(:),intent(in)::A,B1,B2,C1,C2,U
-    integer::n=size(A)
-    real,dimension(size(A)),intent(out):: X
+    real*8,dimension(:),intent(in)::A,B1,B2,C1,C2,U
+    integer::n
+    real*8,dimension(:),allocatable,intent(out):: X
+    n=size(A)
+    allocate(X(n))
 
     do i=4,n-3
       X(i)=A(i)*U(i)+C1(i)*U(i+1)+C2(i)*U(i-1)+B1(i)*U(i+3)+B2(i)*U(i-3)
