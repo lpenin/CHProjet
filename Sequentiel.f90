@@ -1,17 +1,25 @@
 Program Projet
   use fonction
+  use Gradient
   Implicit NONE
 
 
 ! PARAMETRE DU SYSTEME
+<<<<<<< HEAD
 Integer:: Nx, Ny, Maxiter
 Real*8:: Lx, Ly, dx, dy, dt, tfinal, D
 Real*8,dimension(:),allocatable:: U_0, U, Mat_f
+=======
+Integer:: Nx, Ny, i
+Real*8:: Lx, Ly, dx, dy, dt, tfinal, D, t
+Real*8,dimension(:,:),allocatable:: U_0, U, Mat_f
+>>>>>>> 77c6ce91ba872e7ac42e09942978b96e22a19e1b
 Real*8,dimension(:),allocatable::A,B1,B2,C1,C2
-Real*8,Parameter:: coeff_a,coeff_b,coeff_c
+Real*8:: coeff_a,coeff_b,coeff_c
 
 
 ! INITIALISATION
+<<<<<<< HEAD
 OPEN(unit,file='data', form='formatted', status='old')
 READ(unit,*)
 READ(unit,*) Lx, Ly
@@ -20,6 +28,19 @@ READ(unit,*) D
 READ(unit,*)
 READ(unit,*) Nx, Ny
 CLOSE(unit)
+=======
+
+OPEN(10,file='data', form='formatted', status='old')
+READ(10,*)
+READ(10,*) Lx, Ly
+READ(10,*)
+READ(10,*) D
+READ(10,*)
+READ(10,*) Nx, Ny
+READ(10,*)
+READ(10,*) tfinal
+CLOSE(10)
+>>>>>>> 77c6ce91ba872e7ac42e09942978b96e22a19e1b
 
 Allocate(U_0(1:Nx*Ny), U(1:Nx*Ny), Mat_f(1:Nx*Ny))
 Allocate(A(1:Nx*Ny), B1(1:Nx*Ny), B2(1:Nx*Ny), C1(1:Nx*Ny), C2(1:Nx*Ny)) !expliquer d'ou vient la taille des vecteurs
