@@ -33,7 +33,7 @@ Allocate(A(1:Nx*Ny), B1(1:Nx*Ny), B2(1:Nx*Ny), C1(1:Nx*Ny), C2(1:Nx*Ny),Ur(1:Nx*
 
 dx=Lx/(Nx+1)
 dy=Ly/(Ny+1)
-dt=0.9d0*dx*dx/(2.d0*D)
+dt=0.9d0*dx*dx/(4.d0*D)
 coeff_a=1.0d0+ 2.0d0*D*dt/(dy*dy) + 2.0d0*D*dt/(dx*dx)
 coeff_b= -1.0d0*D*dt/(dx*dx)
 coeff_c= -1.0d0*D*dt/(dy*dy)
@@ -63,7 +63,6 @@ end do
 
 
 Maxiter= int(tfinal/dt)
-print*, Maxiter
 !On donne la condition initiale à U
 U(:)= 0.0d0
 mat_f=0.d0
@@ -94,7 +93,7 @@ mat_f=0.d0
       END DO
     END DO
 
-  call GC(A,B1,B2,C1,C2,Mat_f,U,n)
+  call GC(A,B1,B2,C1,C2,Mat_f,U,n,Nx)
 
   END DO
 !  print*,u
