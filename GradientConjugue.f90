@@ -16,7 +16,6 @@ contains
     p=rk
     k=0
     call Mat_mul_creux(A,B1,B2,C1,C2,Ap,p)
-
     do while (sqrt(dot_product(rk,rk))>0.001d0)
       call Mat_mul_creux(A,B1,B2,C1,C2,Ap,p)
       alpha=dot_product(rk,rk)/(dot_product(p,Ap))   !A*p

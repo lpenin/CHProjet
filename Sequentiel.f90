@@ -62,33 +62,31 @@ do i=1,Nx
 end do
 
 
-
-
 Maxiter= int(tfinal/dt)
-
+print*, Maxiter
 !On donne la condition initiale à U
 U(:)= 0.0d0
 mat_f=0.d0
   DO kt = 1, Maxiter
-    ! constructio n de Mat_f
+    ! construction de Mat_f
 
     k=1
     DO j=1,Ny
       DO i=1,Nx
 
-        Mat_f(k)=Mat_f(k)+f(i*dx,j*dy,kt)
+        Mat_f(k)=f(i*dx,j*dy,kt*dt)
 
       IF (i==1) THEN
-        Mat_f(k)=Mat_f(k)-coeff_b*h((i-1)*dx,0.d0,kt)
+        Mat_f(k)=Mat_f(k)-coeff_b*h((i-1)*dx,0.d0,dt*kt)
 
       ELSE if (i==Nx)THEN
-        Mat_f(k)=Mat_f(k)-coeff_b*g((i-1)*dx,Ny*dy,kt)
+        Mat_f(k)=Mat_f(k)-coeff_b*g((i-1)*dx,Ny*dy,dt*kt)
 
       ELSE IF (j==0) THEN
-        Mat_f(k)=Mat_f(k)-coeff_c*h(i*dx,0.d0,kt)
+        Mat_f(k)=Mat_f(k)-coeff_c*h(i*dx,0.d0,dt*kt)
 
       ELSE IF (j==0) THEN
-        Mat_f(k)=Mat_f(k)-coeff_c*h(i*dx,(Ny-1)*dy,kt)
+        Mat_f(k)=Mat_f(k)-coeff_c*h(i*dx,(Ny-1)*dy,dt*kt)
 
       ENDIF
       k=k+1
@@ -96,14 +94,10 @@ mat_f=0.d0
       END DO
     END DO
 
-
   call GC(A,B1,B2,C1,C2,Mat_f,U,n)
-
-
 
   END DO
 !  print*,u
-
 
   !!vecteur solution
   k=1
@@ -119,11 +113,13 @@ mat_f=0.d0
 
 
   k=1
- DO j=1,NY
+ DO j=1,Ny
    do i=1,Nx
-   PRINT*, i*dx, j*dy, u(k)
+   PRINT*, i*dx, j*dy, u(k), ur(k)
+   !print*, C1(j),k
+
    k=k+1
- END DO!
+ END DO
  end do
 
 
