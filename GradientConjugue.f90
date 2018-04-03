@@ -15,13 +15,13 @@ contains
     rk=b-Ax
     p=rk
     k=0
-    call Mat_mul_creux(A,B1,B2,C1,C2,Ap,p)
+    !call Mat_mul_creux(A,B1,B2,C1,C2,Ap,p)
     !rk1=rk
     do while ((sqrt(dot_product(rk,rk))>0.001d0))
       call Mat_mul_creux(A,B1,B2,C1,C2,Ap,p)
       alpha=dot_product(rk,rk)/(dot_product(p,Ap))   !A*p
       X=X+alpha*p
-      print*,"alpha =", sqrt(dot_product(rk,rk))
+      print*,"cond =", sqrt(dot_product(rk,rk))
       rk1=rk-alpha*Ap
 
       beta=dot_product(rk1,rk1)/dot_product(rk,rk)
@@ -31,7 +31,5 @@ contains
     end do
     deallocate(Ax,Ap,rk,rk1,p)
   end subroutine
-
-
 
 end Module
