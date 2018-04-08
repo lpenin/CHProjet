@@ -31,20 +31,25 @@ contains
     integer,intent(in)::Nx
     integer::n
     real*8,dimension(:), allocatable,intent(out):: X
+
     n=size(A)
     Allocate(X(n))
 
-    do i=1,Nx
-      X(i)=A(i)*U(i)+C1(i)*U(i+1)+C2(i)*U(i-1)+B1(i)*U(i+Nx)
+    X(1)=A(1)*U(1)+C1(1)*U(2)+B1(1)*U(1+Nx)
+
+    do i=2,Nx
+            X(i)=A(i)*U(i)+C2(i)*U(i-1)+C1(i)*U(i+1)+B1(i)*U(i+Nx)
     end do
 
-    do i=Nx,n-Nx
-      X(i)=A(i)*U(i)+C1(i)*U(i+1)+C2(i)*U(i-1)+B1(i)*U(i+Nx)+B2(i)*U(i-Nx)
+    do i=Nx+1,N-Nx-1
+            X(i)=A(i)*U(i)+C2(i)*U(i-1)+C1(i)*U(i+1)+B1(i)*U(i+Nx)+B2(i)*U(i-Nx)
     end do
 
-    do i=n-Nx,n
+    do i=N-Nx, N-1
       X(i)=A(i)*U(i)+C1(i)*U(i+1)+C2(i)*U(i-1)+B2(i)*U(i-Nx)
     end do
+
+        X(N)=A(N)*U(N)+C2(N-1)*U(N-1)+B2(N-Nx-1)*U(N-Nx-1)
 
   end subroutine
 end module
