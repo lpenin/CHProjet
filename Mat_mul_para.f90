@@ -55,6 +55,7 @@ PROGRAM matmul
       call charge(i,n,Np,i1,iN)
       Allocate(x1(1:iN-i1+1))
       call MPI_recv(x1,iN-i1+1,MPI_REAL8,i,100,MPI_COMM_WORLD,status,statinfo)
+
       X(i1:iN+1)=x1
       DEALLOCATE(x1)
     end do
