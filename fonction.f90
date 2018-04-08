@@ -28,7 +28,7 @@ contains
 
   subroutine Mat_mul_creux(A,B1,B2,C1,C2,X,U,Nx) !calcul AU=X
     real*8,dimension(:),intent(in)::A,B1,B2,C1,C2,U
-    integer, intent(in)::Nx
+    integer,intent(in)::Nx
     integer::n
     real*8,dimension(:), allocatable,intent(out):: X
 
