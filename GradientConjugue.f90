@@ -21,9 +21,6 @@ contains
       call Mat_mul_creux(A,B1,B2,C1,C2,Ap,p,Nx)
       alpha=dot_product(p,rk)/(dot_product(p,Ap))   !A*p
       X=X+alpha*p
-      !print*, sqrt(dot_product(rk,rk))
-      !print*,"alpha =", alpha
-      !print*, "p =", p
       rk1=rk-alpha*Ap
 
       beta=dot_product(rk1,rk1)/dot_product(rk,rk)
