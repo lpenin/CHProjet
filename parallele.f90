@@ -29,13 +29,13 @@ PROGRAM para
 
   ! Definition des matices
   Allocate(U(1:Nx*Ny), Mat_f(1:Nx*Ny), Ur(1:Nx*Ny))
-  Allocate(A(1:Nx*Ny), B1(1:Nx*Ny), B2(1:Nx*Ny), C1(1:Nx*Ny), C2(1:Nx*Ny)) !expliquer d'ou vient la taille des vecteurs
+  Allocate(A(1:Nx*Ny), B1(1:Nx*Ny), B2(1:Nx*Ny), C1(1:Nx*Ny), C2(1:Nx*Ny)) 
 
   ! Création des variables utiles
   dx=Lx/(Nx+1)
   dy=Ly/(Ny+1)
   dt=0.9d0*dx*dx/(4.d0*D)
-  coeff_a=1.0d0+ 2.0d0*D*dt/(dy*dy) + 2.0d0*D*dt/(dx*dx)
+  coeff_a=1.0d0 + 2.0d0*D*dt/(dy*dy) + 2.0d0*D*dt/(dx*dx)
   coeff_b= -1.0d0*D*dt/(dx*dx)
   coeff_c= -1.0d0*D*dt/(dy*dy)
   n=Nx*Ny
