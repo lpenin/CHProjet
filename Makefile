@@ -1,14 +1,15 @@
 #Objet
 OBJ= fonction.o Sequentiel.o
-OBJ_parra= parallele.f90
+OBJ_para= fonction_parallele.o parallele.o
 optn= -g -fbounds-check -o0 -Wall
 
 #Compile et crée l'executable
 sequentiel: $(OBJ)
 	gfortran $(optn) -o exe $(OBJ)
 
-parrallele:
-	mpif90 -o para $(OBJ_parra)
+parallele:
+	mpif90 -c fonction_parallele.f90 parallele.f90
+	mpif90 -o para $(OBJ_para)
 
 %.o: %.f90
 	gfortran -c $<
