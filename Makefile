@@ -7,7 +7,7 @@ exe: $(OBJ)
 	gfortran $(optn) -o exe $(OBJ)
 
 %.o: %.f90
-	gfortran $(optn) -c $<
+	gfortran -c $<
 
 #Cleaner
 clean:

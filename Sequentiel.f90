@@ -180,7 +180,7 @@ end do
 k=1
 DO j=1,Ny
   do i=1,Nx
-    print*, u(k)-ur(k)
+    print*, u(k),ur(k)
     !print*, C1(j),k
 
     k=k+1
