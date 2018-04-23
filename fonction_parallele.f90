@@ -20,8 +20,8 @@ Contains
     n=size(A)
     Allocate(X(n))
     X=0.d0
-    Do i=i1,iN
 
+    Do i=i1,iN
       If (i==1) then
         X(1)=A(1)*U(1)+C1(1)*U(2)+B1(1)*U(1+Nx)
       End if
@@ -89,7 +89,7 @@ Contains
       call MPI_allreduce(d1,w1,n,MPI_real8,MPI_sum,MPI_comm_world,statinfo)
 
       call charge(me,n,Np,i1,iN)
-      call Mat_mul_para(A,B1,B2,C1,C2,w,w1,Nx,i1,iN)
+      call Mat_mul_para(A,B1,B2,C1,C2,w,w1,Nx,i1,iN) ! W=A*W1
 
       drl = 0.0d0
       dwl = 0.0d0
@@ -161,7 +161,7 @@ Contains
       U(i)=U_0(i)
     End do
 
-    call MPI_allreduce(u,up,n,MPI_real8,MPI_sum,MPI_comm_world,statinfo) !!! REGLER LE PB DE MATMUL PARA ET ON SUPRIME
+    call MPI_allreduce(u,up,n,MPI_real8,MPI_sum,MPI_comm_world,statinfo)
     u=up
   end subroutine
 
